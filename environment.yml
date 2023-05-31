@@ -1,0 +1,23 @@
+name: srcsep
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+  - nvidia
+dependencies:
+  - nvidia::cudatoolkit=11.6
+  - python==3.9
+  - pytorch::pytorch
+  - pip
+  - pip:
+    - matplotlib
+    - obspy
+    - pandas
+    - numpy
+    - scipy
+    - gitpython
+    - h5py
+    - seaborn
+    - pathlib
+    - packaging
+    - termcolor
