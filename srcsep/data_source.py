@@ -123,11 +123,11 @@ class ProcessDataLoader:
         print(f"{self.model_name}: generating data.")
         kwargs_gen = {key: value for key, value in kwargs.items() if key != 'n_files'}
 
-        # multiprocess generation
-        pool = Pool(self.num_workers)
-        pool.map(partial(self.worker, **{**kwargs_gen, **{'dirpath': dirpath}}), np.arange(n_jobs))
-
+        # Serial generation
+        for job_id in range(n_jobs):
+            self.worker(job_id, **{**kwargs_gen, **{'dirpath': dirpath}})
         return kwargs
+
 
     def load(self, R=1, **kwargs) -> TimeSeriesDir:
         """ Loads the data required, generating it if not present in the cache. """

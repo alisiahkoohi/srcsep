@@ -120,6 +120,6 @@ class DeglitchingLoss(nn.Module):
         cross21 = input.select(nl=1, nr=0,c_type=c_types,deglitch_loss_term=2)[:,:,0] / self.std_cross[1][None,:]
         loss3 = 0.5 * (self.mse(cross12) + self.mse(cross21))
 
-        print('data loss:', loss1.item(), 'prior loss:', loss2.item(), 'independence loss:', loss3.item())
+        #print('data loss:', loss1.item(), 'prior loss:', loss2.item(), 'independence loss:', loss3.item())
 
         return loss1 + self.x_loss_w * loss2 + self.indep_loss_w * loss3
