@@ -63,7 +63,7 @@ class Wavelet(nn.Module):
 
         psi_hat = init_band_pass(wav_type, self.T, J, Q, high_freq, wav_norm)
         phi_hat = init_low_pass(wav_type, self.T, J, Q, high_freq)
-        filt_hat = torch.tensor(np.concatenate([psi_hat, phi_hat[None, :]]), dtype=torch.float32)
+        filt_hat = torch.from_numpy(np.concatenate([psi_hat, phi_hat[None, :]]).astype(np.float32))
         self.filt_hat = nn.Parameter(filt_hat, requires_grad=False)
 
         self.Pad = ReflectionPad(T)
