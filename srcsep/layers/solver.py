@@ -52,7 +52,7 @@ class Solver(nn.Module):
 
     def format(self, x: np.ndarray, requires_grad: Optional[bool] = True) -> torch.tensor:
         """ Transforms x into a compatible format for the embedding. """
-        x = torch.tensor(x.reshape(self.B, self.N, -1)).unsqueeze(-2).unsqueeze(-2)
+        x = torch.from_numpy(x.reshape(self.B, self.N, -1)).unsqueeze(-2).unsqueeze(-2)
         if self.is_cuda:
             x = x.cuda()
         x = Variable(x, requires_grad=requires_grad)

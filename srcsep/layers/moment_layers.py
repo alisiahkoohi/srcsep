@@ -21,7 +21,7 @@ class TimeAverage(Estimator):
     """ Averaging operator to estimate probabilistic expectations or correlations. """
     def __init__(self, window: Optional[Iterable] = None) -> None:
         super(TimeAverage, self).__init__()
-        self.w = torch.tensor(window, dtype=torch.int64) if window is not None else None
+        self.w = torch.from_numpy(window.astype(np.int64)) if window is not None else None
 
     def forward(self, x: torch.tensor) -> torch.tensor:
         if self.w is not None:
@@ -33,7 +33,7 @@ class WindowSelector(Estimator):
     """ Selecting operator. """
     def __init__(self, window: Iterable) -> None:
         super(WindowSelector, self).__init__()
-        self.w = torch.tensor(window, dtype=torch.int64)
+        self.w = torch.from_numpy(window.astype(np.int64))
 
     def forward(self, x: torch.tensor) -> torch.tensor:
         return x[..., self.w]
@@ -66,7 +66,7 @@ class ScatCoefficients(nn.Module):
         self.c_types = ['marginal']
         self.ave = ave or TimeAverage()
 
-        self.register_buffer('qs', torch.tensor(qs))
+        self.register_buffer('qs', torch.from_numpy(np.array(qs)))
 
     def forward(self, x: torch.tensor) -> torch.tensor:
         """ Computes E[|Sx|^q].
@@ -147,11 +147,11 @@ class Cov(nn.Module):
     def get_channel_idx(Nl, Nr, channel_mode='full'):
         """ Get the in-channel indices nl, nr to correlate. """
         if channel_mode == 'full':
-            nl, nr = torch.tensor(list(product(range(Nl), range(Nr)))).T
+            nl, nr = torch.from_numpy(np.array(list(product(range(Nl), range(Nr))))).T
         elif channel_mode == 'diag':
             nl = nr = torch.arange(Nl)
         elif channel_mode == 'offdiag':
-            nl, nr = torch.tensor([(nl, nr) for nl, nr in product(range(Nl), range(Nr)) if nl != nr]).T
+            nl, nr = torch.from_numpy(np.array([(nl, nr) for nl, nr in product(range(Nl), range(Nr)) if nl != nr])).T
         else:
             raise ValueError("Unrecognize cross channel mode.")
         return nl, nr
