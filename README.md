@@ -1,6 +1,6 @@
 <h1 align="center">Unearthing InSights into Mars</h1>
 
-Code to partially reproduce results in "Unearthing InSights into Mars: unsupervised source separation with limited data" available at [https://arxiv.org/abs/2301.11981](https://arxiv.org/abs/2301.11981). This paper was recently accepted for presentation at ICML 2023.
+Code to partially reproduce results in "Unearthing InSights into Mars: unsupervised source separation with limited data" available [here](https://proceedings.mlr.press/v202/siahkoohi23a.html).
 
 
 ## Installation

@@ -1061,7 +1061,7 @@ class GenDataLoader(ProcessDataLoader):
         func = solver_fn.joint if jac else solver_fn.function
         try:
             res = scipy.optimize.minimize(func,
-                                          x0,
+                                          x0.reshape(-1),
                                           method=method,
                                           jac=jac,
                                           callback=check_conv_criterion,
