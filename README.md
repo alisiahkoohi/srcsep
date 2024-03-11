@@ -1,6 +1,6 @@
-<h1 align="center">Unearthing InSights into Mars</h1>
+<h1 align="center">Unearthing InSights into Mars: unsupervised source separation with limited data</h1>
 
-Code to partially reproduce results in "Unearthing InSights into Mars: unsupervised source separation with limited data" available [here](https://proceedings.mlr.press/v202/siahkoohi23a.html).
+Code to partially reproduce results in [Unearthing InSights into Mars: unsupervised source separation with limited data](https://proceedings.mlr.press/v202/siahkoohi23a.html), published in the proceedings of ICML 2023.
 
 
 ## Installation
@@ -8,8 +8,8 @@ Code to partially reproduce results in "Unearthing InSights into Mars: unsupervi
 Run the commands below to install the required packages.
 
 ```bash
-git clone https://github.com/alisiahkoohi/insight_src_sep
-cd insight_src_sep/
+git clone https://github.com/alisiahkoohi/srcsep
+cd srcsep/
 conda env create -f environment.yml
 conda activate srcsep
 pip install -e .
@@ -55,7 +55,7 @@ The figures will be stored in the `plots/` directory.
 
 Please contact alisk@rice.edu for questions.
 
-## Author
+## Authors
 
 Rudy Morel and Ali Siahkoohi
 
